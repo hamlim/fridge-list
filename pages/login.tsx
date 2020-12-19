@@ -14,12 +14,11 @@ export default function App() {
         textAlign="center"
       >
         <Box role="presentation" fontSize="4">
-          🧺
+          👀
         </Box>
         <Heading is="h1" variant="h1">
-          Fridge List
+          Login
         </Heading>
-        <Text mt={4}>Shared lists with your friends and family!</Text>
       </Box>
       <Box
         display="flex"

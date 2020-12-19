@@ -1,25 +1,17 @@
-# Template Next.js App
+# Fridge List
 
-This repo acts as a template repo for some of my Next.js applications.
+An application for maintaining shared lists across a group
 
 ## Getting Started:
+
+Install dependencies:
 
 ```sh
 yarn
 ```
 
+Run the development server:
+
 ```sh
 yarn dev
-```
-
-## Deploying:
-
-```sh
-yarn deploy
-```
-
-When you're ready to deploy to production:
-
-```sh
-yarn deploy-prod
 ```
