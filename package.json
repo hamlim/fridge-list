@@ -18,6 +18,7 @@
     "next": "9.3.7-canary.18",
     "react": "experimental",
     "react-dom": "experimental",
+    "simple-props": "^0.2.0",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {

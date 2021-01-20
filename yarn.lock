@@ -5527,6 +5527,11 @@ shell-quote@1.7.2:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
+simple-props@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/simple-props/-/simple-props-0.2.0.tgz#58cb2b782e0251ae4b9417ca3ec55dd6301c61f3"
+  integrity sha512-TOrOj2U6bJwq2b0N7XxNFuAWwgmtXrELI1ntAnoVS2Uu/pIUx5L5/dAso3bEDsL2fJX+Fim5MFJY4Y9sxEW3XA==
+
 simple-swizzle@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/simple-swizzle/-/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Heading, Text, Button } from '@ds-pack/components'
-import LocalLink from '../src/LocalLink'
+import LocalLink from '../components/LocalLink'
 
 export default function App() {
   return (
