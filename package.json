@@ -16,6 +16,8 @@
     "@mdx-js/loader": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
     "@next/mdx": "^9.3.6",
+    "@supabase/supabase-js": "^1.3.2",
+    "airtable": "^0.10.1",
     "magic-sdk": "^4.1.0",
     "next": "9.3.7-canary.18",
     "react": "experimental",

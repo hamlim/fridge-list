@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
-import { Box, Heading, Input, Button } from '@ds-pack/components'
+import {
+  Box,
+  Heading,
+  Input,
+  Button,
+  Banner,
+  TwitterMention,
+  Text,
+} from '@ds-pack/components'
 import { useMagic } from '../services/magic'
 
 export default function App() {
   let [email, setEmail] = useState('')
+  let [error, setError] = useState(false)
 
   let magic = useMagic()
 
@@ -13,8 +22,8 @@ export default function App() {
     }
     try {
       await magic.auth.loginWithMagicLink({ email })
-    } catch {
-      // Handle errors if required!
+    } catch (err) {
+      setError(true)
     }
   }
 
@@ -44,16 +53,30 @@ export default function App() {
         p="$10"
         onSubmit={handleSignup}
       >
+        {error ? (
+          <Banner variant="error" mb="$4">
+            <Text>
+              An error occurred while signing up! If this issue persists please
+              reach out on Twitter:{' '}
+              <TwitterMention>immatthamlin</TwitterMention>
+            </Text>
+          </Banner>
+        ) : null}
         <Input
           mb="$2"
           flexGrow={1}
           minWidth="100%"
           value={email}
           onChange={setEmail}
+          placeholder="hey@ya.com"
+          inputProps={{
+            type: 'email',
+            required: true,
+          }}
         >
           Email:
         </Input>
-        <Button onClick={handleSignup} width="100%">
+        <Button disabled={error} onClick={handleSignup} width="100%">
           Sign Up
         </Button>
       </Box>

@@ -4,7 +4,7 @@ import PlainLink from '../components/PlainLink'
 
 export default function App() {
   return (
-    <Box maxWidth={['95vw', , 'content']} margin="0 auto">
+    <Box>
       <Box
         display="flex"
         flexDirection="column"
