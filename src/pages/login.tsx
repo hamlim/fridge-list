@@ -30,11 +30,11 @@ export default function App() {
       password,
     })
     if (error) {
-      console.log(error)
+      // console.log(error)
       setError(true)
       return
     }
-    console.log(user)
+    // console.log(user)
     setUser(user)
     router.push('/lists')
   }

@@ -23,7 +23,7 @@ export default function Header() {
   //   return () => (isActive = false)
   // }, [magic])
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <Box is="header" p="$4" background="$gray-0">
