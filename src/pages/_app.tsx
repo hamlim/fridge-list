@@ -1,7 +1,8 @@
 import React from 'react'
 import { ThemeProvider, Reset, Box, theme } from '@ds-pack/components'
 import Head from 'next/head'
-import { Provider as AuthProvider } from '../services/magic'
+// import { Provider as AuthProvider } from '../services/magic'
+import { Provider as UserProvider } from '../services/UserContext'
 import Header from '../components/Header'
 import Container from '../components/Container'
 
@@ -21,7 +22,8 @@ export default function App({ Component, pageProps }) {
         <title>Fridge List</title>
       </Head>
       <Reset />
-      <AuthProvider>
+      <UserProvider>
+        {/* <AuthProvider> */}
         <Box is="main" minHeight="100vh">
           <Header />
           <Container is="section">
@@ -29,7 +31,8 @@ export default function App({ Component, pageProps }) {
           </Container>
           <Box is="footer"></Box>
         </Box>
-      </AuthProvider>
+        {/* </AuthProvider> */}
+      </UserProvider>
     </ThemeProvider>
   )
 }

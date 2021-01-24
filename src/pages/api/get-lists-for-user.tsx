@@ -17,32 +17,32 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  let body = JSON.parse(req.body)
+  // let body = JSON.parse(req.body)
 
-  let { issuerId } = body
+  // let { issuerId } = body
 
-  let record
-  await base('users')
-    .select()
-    .eachPage(function page(records, fetchNextPage) {
-      // This function (`page`) will get called for each page of records.
+  // let record
+  // await base('users')
+  //   .select()
+  //   .eachPage(function page(records, fetchNextPage) {
+  //     // This function (`page`) will get called for each page of records.
 
-      let userRecord = records.find((record) => {
-        return record.get('issuerId') === issuerId
-      })
+  //     let userRecord = records.find((record) => {
+  //       return record.get('issuerId') === issuerId
+  //     })
 
-      if (userRecord) {
-        record = userRecord
-        return
-      }
+  //     if (userRecord) {
+  //       record = userRecord
+  //       return
+  //     }
 
-      // To fetch the next page of records, call `fetchNextPage`.
-      // If there are more records, `page` will get called again.
-      // If there are no more records, `done` will get called.
-      fetchNextPage()
-    })
+  //     // To fetch the next page of records, call `fetchNextPage`.
+  //     // If there are more records, `page` will get called again.
+  //     // If there are no more records, `done` will get called.
+  //     fetchNextPage()
+  //   })
 
-  console.log(record)
+  // console.log(record)
 
   res.statusCode = 200
   res.setHeader('Content-Type', 'application/json')

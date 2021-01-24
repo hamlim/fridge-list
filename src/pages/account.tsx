@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Heading, Input, Button } from '@ds-pack/components'
-import { useMagic } from '../services/magic'
+// import { useMagic } from '../services/magic'
+import { useUser } from '../services/UserContext'
+import supabase from '../services/supabase'
+import { useRouter } from 'next/router'
 
 export default function Account() {
-  let magic = useMagic()
-  let [meta, setMeta] = useState(null)
+  // let magic = useMagic()
+  let [user, setUser] = useUser()
+  let router = useRouter()
+  // let [meta, setMeta] = useState(null)
 
-  useEffect(() => {
-    let isActive = true
+  // useEffect(() => {
+  //   let isActive = true
 
-    magic?.user.getMetadata().then((meta) => {
-      if (isActive) {
-        setMeta(meta)
-      }
-    })
+  //   magic?.user.getMetadata().then((meta) => {
+  //     if (isActive) {
+  //       setMeta(meta)
+  //     }
+  //   })
 
-    return () => (isActive = false)
-  }, [magic])
+  //   return () => (isActive = false)
+  // }, [magic])
 
   function logOut() {
-    magic.user.logout()
+    // magic.user.logout()
+    supabase.auth.signOut()
+    router.push('/')
   }
+
+  console.log(user)
 
   return (
     <Box>
@@ -50,7 +59,7 @@ export default function Account() {
         alignItems="center"
         pt="$10"
       >
-        <Input flexGrow={1} minWidth="100%" value={meta?.email} disabled>
+        <Input flexGrow={1} minWidth="100%" value={user.email} disabled>
           Your Email:
         </Input>
       </Box>

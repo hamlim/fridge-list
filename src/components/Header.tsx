@@ -2,23 +2,26 @@ import React, { useEffect, useState } from 'react'
 import Container from './Container'
 import LocalLink from './LocalLink'
 import { Box } from '@ds-pack/components'
-import { useMagic } from '../services/magic'
+// import { useMagic } from '../services/magic'
+import { useUser } from '../services/UserContext'
 
 export default function Header() {
-  let magic = useMagic()
+  // let magic = useMagic()
 
-  let [isLoggedIn, setLoggedIn] = useState(false)
+  let [user] = useUser()
 
-  useEffect(() => {
-    let isActive = true
-    magic?.user.isLoggedIn().then((loggedIn) => {
-      if (isActive) {
-        setLoggedIn(loggedIn)
-      }
-    })
+  // let [isLoggedIn, setLoggedIn] = useState(false)
 
-    return () => (isActive = false)
-  }, [magic])
+  // useEffect(() => {
+  //   let isActive = true
+  //   magic?.user.isLoggedIn().then((loggedIn) => {
+  //     if (isActive) {
+  //       setLoggedIn(loggedIn)
+  //     }
+  //   })
+
+  //   return () => (isActive = false)
+  // }, [magic])
 
   return (
     <Box is="header" p="$4" background="$gray-0">
@@ -34,7 +37,7 @@ export default function Header() {
           <LocalLink href="/">FridgeList</LocalLink>
         </Box>
         <Box>
-          {isLoggedIn ? (
+          {!!user ? (
             <>
               <LocalLink href="/lists" mr="$2">
                 Lists

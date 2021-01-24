@@ -8,23 +8,35 @@ import {
   TwitterMention,
   Text,
 } from '@ds-pack/components'
-import { useMagic } from '../services/magic'
+import supabase from '../services/supabase'
+import { useUser } from '../services/UserContext'
+import { useRouter } from 'next/router'
 
-export default function App() {
+export default function SignUp() {
   let [email, setEmail] = useState('')
+  let [password, setPassword] = useState('')
   let [error, setError] = useState(false)
 
-  let magic = useMagic()
+  let router = useRouter()
+
+  let [, setUser] = useUser()
 
   async function handleSignup(e) {
     if (e) {
       e.preventDefault()
     }
-    try {
-      await magic.auth.loginWithMagicLink({ email })
-    } catch (err) {
+    let { user, error } = await supabase.auth.signUp({
+      email,
+      password,
+    })
+    if (error) {
+      console.log(error)
       setError(true)
+      return
     }
+    console.log(user)
+    setUser(user)
+    router.push('/lists')
   }
 
   return (
@@ -67,11 +79,36 @@ export default function App() {
           flexGrow={1}
           minWidth="100%"
           value={email}
-          onChange={setEmail}
+          onChange={(value: string) => {
+            if (error) {
+              setError(false)
+            }
+            setEmail(value)
+          }}
           placeholder="hey@ya.com"
           inputProps={{
             type: 'email',
             required: true,
+          }}
+        >
+          Email:
+        </Input>
+        <Input
+          mb="$2"
+          flexGrow={1}
+          minWidth="100%"
+          value={password}
+          onChange={(value: string) => {
+            if (error) {
+              setError(false)
+            }
+            setPassword(value)
+          }}
+          placeholder="your-cool-password"
+          inputProps={{
+            type: 'password',
+            required: true,
+            autoComplete: 'current-password',
           }}
         >
           Email:

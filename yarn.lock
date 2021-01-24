@@ -1098,10 +1098,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@ds-pack/components@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@ds-pack/components/-/components-0.0.11.tgz#4766bf5c496e6788efdb28c45afd8265d9be8c7e"
-  integrity sha512-HwlQLL3mwMjF02EWXz7ZwjGe9/gFONGdTF4RJKkESCmU0u8ydGT1qG4OPiEkGSup5/NOo1yv4byEfZI48wzcJA==
+"@ds-pack/components@0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@ds-pack/components/-/components-0.0.12.tgz#51a738855c9c954aaa85d3a4cea9edd61ccfb524"
+  integrity sha512-bp9B1Qsg5XfaVx1duC0412kRO34t/sR6GwPpkohHuxrzgxuykonoos++M9bgnkJv194by+hOieUPZ1FEzX1P/w==
   dependencies:
     "@ds-pack/theme-to-css-vars" "^1.0.0"
 
