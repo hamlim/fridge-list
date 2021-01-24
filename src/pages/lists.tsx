@@ -14,10 +14,12 @@ import {
 // import { useMagic } from '../services/magic'
 import supabase from '../services/supabase'
 import LocalLink from '../components/LocalLink'
+import { useRouter } from 'next/router'
+import { v4 } from 'uuid'
 
 import { toUrl } from '../utils/url'
 
-function CreateListCard() {
+function CreateListCard({ refetch }) {
   let [newListName, setNewListName] = useState('')
 
   let [newListDescription, setNewListDescription] = useState('')
@@ -26,11 +28,28 @@ function CreateListCard() {
 
   let theme = useTheme()
 
-  function createList() {
+  async function createList() {
     if (newListName.length === 0) {
       setError('name')
       return
     }
+    let user = supabase.auth.user()
+    let { data, error } = await supabase.from('lists').insert([
+      {
+        id: v4(),
+        name: newListName,
+        description: newListDescription,
+        creator: user.id,
+        items: { items: [] },
+      },
+    ])
+    if (error) {
+      setError('create')
+      return
+    }
+    setNewListDescription('')
+    setNewListName('')
+    refetch()
   }
   return (
     <Box
@@ -52,6 +71,11 @@ function CreateListCard() {
                     Uh Oh! You forgot to add a name to your new list, make sure
                     to enter one!
                   </Text>
+                )
+              }
+              case 'created': {
+                return (
+                  <Text>Uh Oh! We were unable to create your new list!</Text>
                 )
               }
               default: {
@@ -96,11 +120,22 @@ function CreateListCard() {
 export default function Lists(props) {
   let [lists, setLists] = useState(null)
   let [error, setError] = useState(false)
+  let router = useRouter()
+
+  let [shouldFetch, setShouldFetch] = useState(false)
+
+  function refetch() {
+    setShouldFetch((f) => !f)
+  }
 
   useEffect(() => {
     let isActive = true
 
     let user = supabase.auth.user()
+
+    if (!user) {
+      router.push('/')
+    }
 
     supabase
       .from('lists')
@@ -121,12 +156,12 @@ export default function Lists(props) {
         setError(true)
       })
     return () => (isActive = false)
-  }, [])
+  }, [shouldFetch])
 
   let theme = useTheme()
 
   return (
-    <Box>
+    <Box mb="$2">
       <Heading variant="h1" is="h1" mb="$4">
         Your Lists:
       </Heading>
@@ -159,7 +194,7 @@ export default function Lists(props) {
                 </LocalLink>
               </Box>
             ))}
-            <CreateListCard />
+            <CreateListCard refetch={refetch} />
           </Stack>
         </>
       ) : null}
