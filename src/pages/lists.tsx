@@ -101,7 +101,6 @@ export default function Lists(props) {
     let isActive = true
 
     let user = supabase.auth.user()
-    console.log('userdata', user)
 
     supabase
       .from('lists')

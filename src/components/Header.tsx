@@ -23,13 +23,11 @@ export default function Header() {
   //   return () => (isActive = false)
   // }, [magic])
 
+  console.log(user)
+
   return (
     <Box is="header" p="$4" background="$gray-0">
-      <Container
-        display="flex"
-        flexDirection={{ _: 'column', '40em': 'row' }}
-        justifyContent="space-between"
-      >
+      <Container display="flex" justifyContent="space-between" fontSize="$2">
         <Box display="inline-flex" alignItems="center">
           <Box role="presentation" mr="$2">
             🧺
