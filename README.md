@@ -15,3 +15,11 @@ Run the development server:
 ```sh
 yarn dev
 ```
+
+## TODO:
+
+- [ ] List view
+  - [ ] Add list item
+  - [ ] Check off list item
+- [ ] Account View
+  - [ ] Add name
