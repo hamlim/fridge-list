@@ -12,7 +12,7 @@ import supabase from '../services/supabase'
 import { useUser } from '../services/UserContext'
 import { useRouter } from 'next/router'
 
-export default function App() {
+export default function Login() {
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
   let [error, setError] = useState(false)
@@ -21,7 +21,7 @@ export default function App() {
 
   let [, setUser] = useUser()
 
-  async function handleSignIn(e) {
+  async function handleLogin(e) {
     if (e) {
       e.preventDefault()
     }
@@ -63,7 +63,7 @@ export default function App() {
         justifyContent="center"
         alignItems="center"
         p="$10"
-        onSubmit={handleSignIn}
+        onSubmit={handleLogin}
       >
         {error ? (
           <Banner variant="error" mb="$4">
@@ -113,8 +113,8 @@ export default function App() {
         >
           Email:
         </Input>
-        <Button disabled={error} onClick={handleSignIn} width="100%">
-          Sign In
+        <Button disabled={error} onClick={handleLogin} width="100%">
+          Login
         </Button>
       </Box>
     </Box>
