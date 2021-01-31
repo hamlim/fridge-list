@@ -11,11 +11,9 @@ import {
   Button,
   Textarea,
 } from '@ds-pack/components'
-// import { useMagic } from '../services/magic'
 import supabase from '../services/supabase'
 import LocalLink from '../components/LocalLink'
 import { useRouter } from 'next/router'
-import { v4 } from 'uuid'
 
 import { toUrl } from '../utils/url'
 
@@ -36,7 +34,6 @@ function CreateListCard({ refetch }) {
     let user = supabase.auth.user()
     let { data, error } = await supabase.from('lists').insert([
       {
-        id: v4(),
         name: newListName,
         description: newListDescription,
         creator: user.id,
@@ -173,10 +170,9 @@ export default function Lists(props) {
           </Text>
         </Banner>
       ) : null}
-      {lists ? (
-        <>
-          <Stack gap="$4">
-            {lists.map((list) => (
+      <Stack gap="$4">
+        {lists
+          ? lists.map((list) => (
               <Box
                 borderRadius="$1"
                 boxShadow={`0px 0px 4px 4px ${theme.colors.gray[2]}`}
@@ -189,15 +185,14 @@ export default function Lists(props) {
                 {list.description ? (
                   <Text color="$gray-5">{list.description}</Text>
                 ) : null}
-                <LocalLink href={`/list/${toUrl(list.name)}`}>
+                <LocalLink href={`/list/${toUrl(list.id)}`}>
                   View List ➡️
                 </LocalLink>
               </Box>
-            ))}
-            <CreateListCard refetch={refetch} />
-          </Stack>
-        </>
-      ) : null}
+            ))
+          : null}
+        <CreateListCard refetch={refetch} />
+      </Stack>
     </Box>
   )
 }
