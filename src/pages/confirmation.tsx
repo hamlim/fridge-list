@@ -11,31 +11,12 @@ import {
 import supabase from '../services/supabase'
 import { useUser } from '../services/UserContext'
 import { useRouter } from 'next/router'
+import LinkButton from '../components/LinkButton'
 
 export default function Confirmation() {
-  let [email, setEmail] = useState('')
-  let [password, setPassword] = useState('')
-  let [error, setError] = useState(false)
-
   let router = useRouter()
 
-  let [, setUser] = useUser()
-
-  async function handleSignup(e) {
-    if (e) {
-      e.preventDefault()
-    }
-    let { user, error } = await supabase.auth.signUp({
-      email,
-      password,
-    })
-    if (error) {
-      setError(true)
-      return
-    }
-    setUser(user)
-    router.push('/signing-up')
-  }
+  let [user, setUser] = useUser()
 
   return (
     <Box>
@@ -48,73 +29,15 @@ export default function Confirmation() {
         textAlign="center"
       >
         <Box role="presentation" fontSize="$4">
-          👤
+          🎉
         </Box>
         <Heading is="h1" variant="h1">
-          Sign Up
+          Welcome to Fridge List!
         </Heading>
       </Box>
-      <Box
-        is="form"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        p="$10"
-        onSubmit={handleSignup}
-      >
-        {error ? (
-          <Banner variant="error" mb="$4">
-            <Text>
-              An error occurred while signing up! If this issue persists please
-              reach out on Twitter:{' '}
-              <TwitterMention>immatthamlin</TwitterMention>
-            </Text>
-          </Banner>
-        ) : null}
-        <Input
-          mb="$2"
-          flexGrow={1}
-          minWidth="100%"
-          value={email}
-          onChange={(value: string) => {
-            if (error) {
-              setError(false)
-            }
-            setEmail(value)
-          }}
-          placeholder="hey@ya.com"
-          inputProps={{
-            type: 'email',
-            required: true,
-          }}
-        >
-          Email:
-        </Input>
-        <Input
-          mb="$2"
-          flexGrow={1}
-          minWidth="100%"
-          value={password}
-          onChange={(value: string) => {
-            if (error) {
-              setError(false)
-            }
-            setPassword(value)
-          }}
-          placeholder="your-cool-password"
-          inputProps={{
-            type: 'password',
-            required: true,
-            autoComplete: 'current-password',
-          }}
-        >
-          Email:
-        </Input>
-        <Button disabled={error} onClick={handleSignup} width="100%">
-          Sign Up
-        </Button>
-      </Box>
+      <LinkButton href="/lists" width="100%">
+        Lists
+      </LinkButton>
     </Box>
   )
 }
