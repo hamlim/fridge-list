@@ -34,7 +34,7 @@ export default function Header() {
           </Box>
           <LocalLink href="/">FridgeList</LocalLink>
         </Box>
-        <Box>
+        <Box display={{ _: 'none', '40em': 'block' }}>
           {!!user ? (
             <>
               <LocalLink href="/lists" mr="$2">

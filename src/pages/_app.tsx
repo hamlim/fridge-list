@@ -1,9 +1,9 @@
 import React from 'react'
 import { ThemeProvider, Reset, Box, theme } from '@ds-pack/components'
 import Head from 'next/head'
-// import { Provider as AuthProvider } from '../services/magic'
 import { Provider as UserProvider } from '../services/UserContext'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import Container from '../components/Container'
 
 export default function App({ Component, pageProps }) {
@@ -24,12 +24,12 @@ export default function App({ Component, pageProps }) {
       <Reset />
       <UserProvider>
         {/* <AuthProvider> */}
-        <Box is="main" minHeight="100vh">
+        <Box is="main" display="flex" flexDirection="column" minHeight="100vh">
           <Header />
-          <Container is="section">
+          <Container flexGrow={1} is="section">
             <Component {...pageProps} />
           </Container>
-          <Box is="footer"></Box>
+          <Footer />
         </Box>
         {/* </AuthProvider> */}
       </UserProvider>
