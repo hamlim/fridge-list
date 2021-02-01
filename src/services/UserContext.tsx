@@ -8,6 +8,15 @@ export function Provider({ children }) {
   useEffect(() => {
     let user = supabase.auth.user()
     val[1](user)
+
+    let isActive = true
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        val[1](session.user)
+      }
+    })
+
+    return () => (isActive = false)
   }, [])
   return <userContext.Provider value={val}>{children}</userContext.Provider>
 }

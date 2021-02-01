@@ -14,7 +14,7 @@ import {
 import supabase from '../services/supabase'
 import LocalLink from '../components/LocalLink'
 import { useRouter } from 'next/router'
-import { keyframes } from 'styled-components'
+import Placeholder from '../components/Placeholder'
 
 import { toUrl } from '../utils/url'
 
@@ -115,15 +115,6 @@ function CreateListCard({ refetch }) {
   )
 }
 
-let placeholder = keyframes`
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1
-  }
-`
-
 export default function Lists(props) {
   let [lists, setLists] = useState(null)
   let [error, setError] = useState(false)
@@ -206,24 +197,8 @@ export default function Lists(props) {
             boxShadow={`0px 0px 4px 4px ${theme.colors.gray[2]}`}
             p="$4"
           >
-            <Box
-              borderRadius="$1"
-              fontSize="$2"
-              minHeight="1.2em"
-              backgroundColor="$gray-3"
-              mb="$2"
-              css={`
-                animation: ${placeholder} 1s ease infinite;
-              `}
-            />
-            <Box
-              borderRadius="$1"
-              minHeight="1.2em"
-              backgroundColor="$gray-3"
-              css={`
-                animation: ${placeholder} 1s ease infinite;
-              `}
-            />
+            <Placeholder mb="$2" />
+            <Placeholder />
           </Box>
         )}
         <CreateListCard refetch={refetch} />
